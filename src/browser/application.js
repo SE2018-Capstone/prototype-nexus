@@ -1,6 +1,5 @@
 import url from 'url';
 import BrowserWindow from 'browser-window';
-import Store from 'store';
 
 export default class Application {
 
