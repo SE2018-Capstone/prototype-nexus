@@ -3,24 +3,26 @@ import { render } from 'react-dom';
 import { Router, Route, IndexRoute } from 'react-router';
 import App from 'components/app';
 import Main from 'components/main';
-import Secondary from 'components/secondary';
 import url from 'url';
 import createMemoryHistory from 'history/lib/createMemoryHistory';
-import WindowSettings from 'window-settings';
+
+const queryParams = url.parse(window.location.href, true).query;
+const windowParams = queryParams.windowParams ? JSON.parse(queryParams.windowParams) : {};
 
 const reactHost = global.document.createElement('span');
 global.document.body.appendChild(reactHost);
 
-let history = createMemoryHistory();
+// Allow manually changing the url
+const history = createMemoryHistory();
+
 render((
     <Router history={history}>
       <Route path="/" component={App}>
         <Route path="/main" component={Main}/>
-        <Route path="/secondary" component={Secondary}/>
       </Route>
     </Router>
 ), reactHost);
 
-if (WindowSettings.route) {
-  history.pushState(null, WindowSettings.route);
+if (windowParams.route) {
+  history.pushState(null, windowParams.route);  // Navigate to the provided route
 }

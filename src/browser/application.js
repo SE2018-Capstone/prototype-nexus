@@ -2,37 +2,27 @@ import url from 'url';
 import BrowserWindow from 'browser-window';
 
 export default class Application {
-
   constructor() {
-    let mainWindow = new BrowserWindow({
+    const mainWindow = new BrowserWindow({
       width: 1024,
       height: 728
     });
 
-    this.loadFileUrl({
+    this.loadRoute({
       wnd: mainWindow,
       params: { route: '/main' }
     });
-
-
-    let secondaryWindow = new BrowserWindow({
-      width: 512,
-      height: 1024
-    });
-
-    this.loadFileUrl({
-      wnd: secondaryWindow,
-      params: { route: '/secondary' }
-    });
   }
 
-  loadFileUrl({wnd, pathname, params: params = {}}) {
+  // Routes are used to determine what root component a window should be
+  // showing.  This allows for multiple windows to display different things
+  loadRoute({wnd, pathname, params: params = {}}) {
     if (!pathname) {
-      let htmlFile = process.env.HOT ? `index-hot.html` : `index.html`;
+      const htmlFile = process.env.HOT ? `index-hot.html` : `index.html`;
       pathname = `${process.cwd()}/static/${htmlFile}`;
     }
 
-    let targetUrl = url.format({
+    const targetUrl = url.format({
       protocol: 'file',
       pathname: pathname,
       slashes: true,
@@ -41,5 +31,4 @@ export default class Application {
 
     wnd.loadURL(targetUrl);
   }
-
 }
