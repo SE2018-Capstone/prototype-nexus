@@ -12,6 +12,8 @@ export default class Application {
       wnd: mainWindow,
       params: { route: '/main' }
     });
+
+    mainWindow.webContents.openDevTools();
   }
 
   // Routes are used to determine what root component a window should be
