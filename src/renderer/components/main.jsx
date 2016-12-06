@@ -30,6 +30,14 @@ export default class Main extends React.Component {
     exec("osascript -e 'if application \"Spotify\" is running then tell application \"Spotify\" to pause'");
   }
 
+  prevTrack() {
+    exec("osascript -e 'if application \"Spotify\" is running then tell application \"Spotify\" to previous track'");
+  }
+
+  nextTrack() {
+    exec("osascript -e 'if application \"Spotify\" is running then tell application \"Spotify\" to next track'");
+  }
+
   quitSpotify() {
     exec("osascript -e 'if application \"Spotify\" is running then tell application \"Spotify\" to quit'");
   }
@@ -44,8 +52,46 @@ export default class Main extends React.Component {
         <button id="close-spotify" onClick={() => this.quitSpotify()} > Quit Spotify </button>
         <br/>
         Controls:
-        <button id="play" onClick={() => this.play()} > Play </button>
-        <button id="pause" onClick={() => this.pause()} > Pause </button>
+        <button
+          id="rewind"
+          onClick={() => this.prevTrack()}
+          style={{
+            background: "url('../res/rewind-button.png')",
+            width: 40,
+            height: 40,
+            backgroundSize: '100%'
+          }}
+        />
+        <button
+          id="play"
+          onClick={() => this.play()}
+          style={{
+            background: "url('../res/play-button.png')",
+            width: 40,
+            height: 40,
+            backgroundSize: '100%'
+          }}
+        />
+        <button
+          id="pause"
+          onClick={() => this.pause()}
+          style={{
+            background: "url('../res/pause-button.png')",
+            width: 40,
+            height: 40,
+            backgroundSize: '100%'
+          }}
+        />
+        <button
+          id="fast-forward"
+          onClick={() => this.nextTrack()}
+          style={{
+            background: "url('../res/fast-forward-button.png')",
+            width: 40,
+            height: 40,
+            backgroundSize: '100%'
+          }}
+        />
       </div>
     );
   }

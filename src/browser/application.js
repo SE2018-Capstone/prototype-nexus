@@ -5,7 +5,8 @@ export default class Application {
   constructor() {
     const mainWindow = new BrowserWindow({
       width: 1024,
-      height: 728
+      height: 728,
+      frame: false
     });
 
     this.loadRoute({
