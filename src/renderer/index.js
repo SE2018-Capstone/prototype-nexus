@@ -9,7 +9,7 @@ import createMemoryHistory from 'history/lib/createMemoryHistory';
 const queryParams = url.parse(window.location.href, true).query;
 const windowParams = queryParams.windowParams ? JSON.parse(queryParams.windowParams) : {};
 
-const reactHost = global.document.createElement('span');
+const reactHost = global.document.getElementById('root');
 global.document.body.appendChild(reactHost);
 
 // Allow manually changing the url
