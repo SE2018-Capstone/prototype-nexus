@@ -5,7 +5,11 @@ import React from 'react';
 export default class App extends React.Component {
   render() {
     return (
-      <div>
+      <div style={{
+        height: '100%',
+        width: '100%',
+        margin: 0,
+      }}>
         {this.props.children}
       </div>
     );

@@ -3,7 +3,11 @@
   "version": "0.1.0",
   "main": "main.js",
   "scripts": {
-    "start": "HOT=1 DEBUG=* NODE_ENV=development electron ./build/main.js",
+    "start": "HOT=1 NODE_ENV=development electron ./build/main.js",
+    "build-electron": "webpack --config webpack.config.electron.js",
+    "build-development": "webpack --config webpack.config.development.js",
+    "build": "npm run build-electron && npm run build-development",
+    "start-win": "set NODE_ENV=development && electron .\\build\\main.js",
     "watch": "node server.js"
   },
   "bin": {
@@ -47,6 +51,7 @@
     "webpack-target-electron-renderer": "^0.3.0"
   },
   "dependencies": {
+    "autoprefixer": "^6.5.4",
     "debug": "^2.2.0",
     "electron-debug": "^0.5.1",
     "history": "^1.17.0",
