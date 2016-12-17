@@ -19,6 +19,10 @@ export default class SpotifyController extends React.Component {
     exec("osascript -e 'tell application \"Spotify\" to activate'");
   }
 
+  quitSpotify() {
+    exec("osascript -e 'if application \"Spotify\" is running then tell application \"Spotify\" to quit'");
+  }
+
   play() {
     // dialog.showMessageBox({
     //   type: 'info',
@@ -42,14 +46,12 @@ export default class SpotifyController extends React.Component {
 
   prevTrack() {
     exec("osascript -e 'if application \"Spotify\" is running then tell application \"Spotify\" to previous track'");
+    setTimeout(() => this.getMetadata(), 200);
   }
 
   nextTrack() {
     exec("osascript -e 'if application \"Spotify\" is running then tell application \"Spotify\" to next track'");
-  }
-
-  quitSpotify() {
-    exec("osascript -e 'if application \"Spotify\" is running then tell application \"Spotify\" to quit'");
+    setTimeout(() => this.getMetadata(), 200);
   }
 
   getMetadata() {
@@ -144,12 +146,16 @@ export default class SpotifyController extends React.Component {
 
         <div id="song-metadata">
           <h3> Song Info: </h3>
-          Track Name: {this.state.trackName}
-          <br/>
-          Artist: {this.state.artist}
-          <br/>
-          Album: {this.state.album}
-          <webview src={this.state.albumArtworkUrl} ></webview> 
+          <div id="album-art" style={{float: 'left', width: '30%'}}>
+            <webview src={this.state.albumArtworkUrl} style={{width: 120, height: 120}} autosize="off"></webview> 
+          </div>
+          <div id="song-data" style={{float: 'right', width: '70%'}}>
+            Track Name: {this.state.trackName}
+            <br/>
+            Artist: {this.state.artist}
+            <br/>
+            Album: {this.state.album}
+          </div>
         </div>
       </div>
     );
