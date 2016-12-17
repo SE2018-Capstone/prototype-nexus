@@ -1,7 +1,6 @@
 
 'use strict';
-import app from 'app';
-import BrowserWindow from 'browser-window';
+import { app, BrowserWindow } from 'electron';
 import Application from 'browser/application';
 
 require('electron-debug')();

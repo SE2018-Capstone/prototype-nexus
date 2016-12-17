@@ -1,4 +1,4 @@
-import BrowserWindow from 'browser-window';
+import { BrowserWindow } from 'electron';
 import loadWindow from 'utils/loadWindow';
 
 export default class Application {
