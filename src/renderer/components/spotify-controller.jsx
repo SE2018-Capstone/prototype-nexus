@@ -8,18 +8,22 @@ const exec = require('child_process').exec;
 
 
 export default class SpotifyController extends React.Component {
-  // trackName;
   constructor() {
     super();
+    this.songCheckTimer = null;
     this.state = {trackName: "", artist: "", album: "", albumArtworkUrl: ""};
     this.getMetadata();
+    this.checkForNewSong();
   }
 
   openSpotify() {
     exec("osascript -e 'tell application \"Spotify\" to activate'");
+    this.stopTimer();
+    this.checkForNewSong();
   }
 
   quitSpotify() {
+    this.stopTimer();
     exec("osascript -e 'if application \"Spotify\" is running then tell application \"Spotify\" to quit'");
   }
 
@@ -32,6 +36,8 @@ export default class SpotifyController extends React.Component {
     // });
     // exec("osascript -e 'tell application \"System Events\" to keystroke space using command down'");
     exec("osascript -e 'if application \"Spotify\" is running then tell application \"Spotify\" to play'");
+    this.stopTimer();
+    this.checkForNewSong();
   }
 
   pause() {
@@ -93,6 +99,23 @@ export default class SpotifyController extends React.Component {
     });    
   }
 
+  checkForNewSong() {
+    exec("osascript -e 'tell application \"Spotify\" to return player position as real'", (error, stdout, stderr) => {
+      console.log(stdout);
+      if (stdout <= 1.0) {
+        this.getMetadata();
+      }
+      this.songCheckTimer = setTimeout(() => this.checkForNewSong(), 500);
+    });
+  }
+
+  stopTimer() {
+    if (this.songCheckTimer !== null) {
+      clearTimeout(this.songCheckTimer);
+    }
+    this.songCheckTimer = null;
+  }
+
   render() {
     return (
       <div id="spotify">
@@ -147,7 +170,7 @@ export default class SpotifyController extends React.Component {
         <div id="song-metadata">
           <h3> Song Info: </h3>
           <div id="album-art" style={{float: 'left', width: '30%'}}>
-            <webview src={this.state.albumArtworkUrl} style={{width: 120, height: 120}} autosize="off"></webview> 
+            <webview src={this.state.albumArtworkUrl} style={{width: 120, height: 120}} />
           </div>
           <div id="song-data" style={{float: 'right', width: '70%'}}>
             Track Name: {this.state.trackName}
