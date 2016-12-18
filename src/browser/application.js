@@ -6,14 +6,24 @@ export default class Application {
     const mainWindow = new BrowserWindow({
       width: 1024,
       height: 728,
-      frame: false
+    });
+
+    const spotifyWindow = new BrowserWindow({
+      width: 500,
+      minWidth: 500,
+      maxWidth: 500,
+      height: 400,
+      minHeight: 400,
+      maxHeight: 400,
     });
 
     loadWindow({
       wnd: mainWindow,
       params: { route: '/main' }
     });
-
-    mainWindow.webContents.openDevTools();
+    loadWindow({
+      wnd: spotifyWindow,
+      params: { route: '/spotify-controller' }
+    });
   }
 }
