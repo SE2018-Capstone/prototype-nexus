@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import { Router, Route, IndexRoute } from 'react-router';
 import App from 'components/app';
 import Main from 'components/main';
+import SpotifyController from 'components/spotify-controller'
 import url from 'url';
 import createMemoryHistory from 'history/lib/createMemoryHistory';
 
@@ -19,6 +20,7 @@ render((
     <Router history={history}>
       <Route path="/" component={App}>
         <Route path="/main" component={Main}/>
+        <Route path="/spotify-controller" component={SpotifyController}/>
       </Route>
     </Router>
 ), reactHost);
