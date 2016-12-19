@@ -4,6 +4,7 @@ import { Router, Route, IndexRoute } from 'react-router';
 import App from 'components/app';
 import Main from 'components/main';
 import PhotoController from 'components/photo-controller'
+import SpotifyController from 'components/spotify-controller'
 import url from 'url';
 import createMemoryHistory from 'history/lib/createMemoryHistory';
 
@@ -21,6 +22,7 @@ render((
       <Route path="/" component={App}>
         <Route path="/main" component={Main}/>
         <Route path="/photo-controller" component={PhotoController}/>
+        <Route path="/spotify-controller" component={SpotifyController}/>
       </Route>
     </Router>
 ), reactHost);
