@@ -6,16 +6,16 @@ const baseConfig = require('./webpack.config.base');
 const config = _.cloneDeep(baseConfig);
 
 
-// const fs = require('fs');
-// var nodeModules = {};
-// fs.readdirSync('node_modules')
-//   .filter(function(x) {
-//     return ['.bin'].indexOf(x) === -1;
-//   })
-//   .forEach(function(mod) {
-//     nodeModules[mod] = 'commonjs ' + mod;
-//   });
-// config.externals.push(nodeModules);
+ const fs = require('fs');
+ var nodeModules = {};
+ fs.readdirSync('node_modules')
+   .filter(function(x) {
+     return ['.bin'].indexOf(x) === -1;
+   })
+   .forEach(function(mod) {
+     nodeModules[mod] = 'commonjs ' + mod;
+   });
+ config.externals.push(nodeModules);
 
 
 config.devtool = 'cheap-module-eval-source-map';
