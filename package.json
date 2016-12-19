@@ -56,17 +56,21 @@
     "electron-debug": "^0.5.1",
     "history": "^1.17.0",
     "immutable": "^3.8.0",
+    "json-loader": "^0.5.4",
     "lodash": "^4.13.1",
+    "rc-progress": "^2.0.3",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
     "react-redux": "^4.0.6",
     "react-router": "^1.0.2",
+    "react-svg-gauge": "^1.0.4",
     "redux": "^3.0.5",
     "redux-electron-store": "^0.3.7",
     "redux-logger": "^2.3.1",
     "redux-persist": "^1.5.0",
     "redux-saga": "^0.12.1",
-    "redux-thunk": "^1.0.2"
+    "redux-thunk": "^1.0.2",
+    "systeminformation": "^3.13.0"
   },
   "devEngines": {
     "node": "4.x"
