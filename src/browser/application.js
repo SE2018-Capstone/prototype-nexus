@@ -1,7 +1,11 @@
 import { BrowserWindow } from 'electron';
 import loadWindow from 'utils/loadWindow';
-import * as a from 'node-os-calls';
-console.log(a.WhoAmI());
+import * as os_calls from 'node-os-calls';
+try {
+  console.log(os_calls.getVolume());
+} catch(err) {
+  console.log(err);
+}
 
 export default class Application {
   constructor() {
