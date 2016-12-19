@@ -5,6 +5,7 @@ import App from 'components/app';
 import Main from 'components/main';
 import PhotoController from 'components/photo-controller'
 import SpotifyController from 'components/spotify-controller'
+import ComputerStats from './components/computer-stats.jsx';
 import url from 'url';
 import createMemoryHistory from 'history/lib/createMemoryHistory';
 
@@ -23,6 +24,7 @@ render((
         <Route path="/main" component={Main}/>
         <Route path="/photo-controller" component={PhotoController}/>
         <Route path="/spotify-controller" component={SpotifyController}/>
+        <Route path="/computer-stats" component={ComputerStats}/>
       </Route>
     </Router>
 ), reactHost);
