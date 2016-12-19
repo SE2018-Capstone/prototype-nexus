@@ -17,13 +17,29 @@ export default class Application {
       maxHeight: 400,
     });
 
+    const photoWindow = new BrowserWindow({
+      width: 440,
+      minWidth: 440,
+      maxWidth: 440,
+      height: 450,
+      minHeight: 450,
+      maxHeight: 450,
+    });
+
     loadWindow({
       wnd: mainWindow,
       params: { route: '/main' }
     });
+
+    loadWindow({
+      wnd: photoWindow,
+      params: { route: '/photo-controller' }
+    });
+    
     loadWindow({
       wnd: spotifyWindow,
       params: { route: '/spotify-controller' }
     });
+
   }
 }
